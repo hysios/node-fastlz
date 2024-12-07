@@ -6,10 +6,11 @@
 
 NAN_METHOD(CompressSync) {
   if (info.Length() == 2 && node::Buffer::HasInstance(info[0]) && info[1]->IsUint32()) {
-    v8::Local<v8::Object> sourceObject = info[0]->ToObject();
+    v8::Local<v8::Context> context = info.GetIsolate()->GetCurrentContext();
+    v8::Local<v8::Object> sourceObject = info[0]->ToObject(context).ToLocalChecked();
     void* source = static_cast<void*>(node::Buffer::Data(sourceObject));
 
-    uint32_t dataLength = info[1]->Uint32Value();
+    uint32_t dataLength = info[1]->Uint32Value(context).FromJust();
 
     // Ensure the new buffer is at least big enough to hold the compressed data
     // per the requirements by fastlz
