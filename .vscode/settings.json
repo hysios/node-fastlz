@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        ".ansible/**/*.yml": "ansible",
+        ".ansible/*.yml": "ansible",
+        "cmath": "cpp"
+    }
+}

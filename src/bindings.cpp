@@ -14,7 +14,7 @@ NAN_METHOD(CompressSync) {
 
     // Ensure the new buffer is at least big enough to hold the compressed data
     // per the requirements by fastlz
-    int destinationSize = std::max(66, static_cast<int>(std::ceil(dataLength * 1.05)));
+    int destinationSize = (std::max)(66, static_cast<int>(std::ceil(dataLength * 1.05)));
     void* destination = std::malloc(destinationSize);
 
     int compressedSize = fastlz_compress(source, dataLength, destination);
